@@ -81,10 +81,7 @@ dependencies:
   widget_marquee: ^0.0.8
   window_manager: ^0.4.2
   youtube_explode_dart:
-  git:
-    url: https://github.com/Bikram-Kumar/youtube_explode_dart.git
-    branch: master
-    ref: 6f28a8bf0f00c1ef7073c335bafe48f8bab05edc
+    path: packages/youtube_explode_dart
 dev_dependencies:
 
   # The "flutter_lints" package below contains a set of recommended lints to
