@@ -12,7 +12,17 @@ class StreamProvider {
     final yt = YoutubeExplode();
     
     try {
-      final res = await yt.videos.streamsClient.getManifest(videoId);
+      // Explicitly specify clients in priority order so we don't depend on
+      // library defaults. tv works without signature decoding and on restricted
+      // videos; ios is reliable for audio-only streams; androidVr is a fallback.
+      final res = await yt.videos.streamsClient.getManifest(
+        videoId,
+        ytClients: [
+          YoutubeApiClient.tv,
+          YoutubeApiClient.ios,
+          YoutubeApiClient.androidVr,
+        ],
+      );
       final audio = res.audioOnly;
       return StreamProvider(
           playable: true,
