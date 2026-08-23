@@ -223,6 +223,15 @@ class _StreamInfo extends StreamInfoProvider {
   @override
   late final int? videoWidth = root.getT<int>('width');
 
+  @override
+  late final int? duration =
+      int.tryParse(root.getT<String>('approxDurationMs') ?? '');
+
+  @override
+  late final double loudnessDb =
+      (root.getT<num>('loudnessDb'))?.toDouble() ?? 0.0;
+
+  @override
   late final bool isAudioOnly = codec.type == 'audio';
 
   @override

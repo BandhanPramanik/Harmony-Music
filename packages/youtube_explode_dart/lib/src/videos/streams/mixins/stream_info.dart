@@ -39,6 +39,12 @@ mixin StreamInfo {
   /// Stream quality label.
   String get qualityLabel;
 
+  /// Stream duration in milliseconds (if available).
+  int? get duration => null;
+
+  /// Stream loudness in dB (if available).
+  double get loudnessDb => 0.0;
+
   /// Convert to a json-serialized type.
   Map<String, dynamic> toJson();
 }

@@ -494,7 +494,9 @@ class StreamClient {
             stream.qualityLabel!,
             stream.fragments ?? const [],
             stream.codec,
-            stream.audioTrack);
+            stream.audioTrack,
+            stream.duration,
+            stream.loudnessDb);
       } else {
         throw YoutubeExplodeException('Could not extract stream codec');
       }
