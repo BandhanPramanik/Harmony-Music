@@ -34,7 +34,7 @@ class StreamProvider {
                       e.audioCodec.contains('mp') ? Codec.mp4a : Codec.opus,
                   bitrate: e.bitrate.bitsPerSecond,
                   duration: e.duration ?? 0,
-                  loudnessDb: e.loudnessDb,
+                  loudnessDb: e.loudnessDb ?? 0.0,
                   url: e.url.toString(),
                   size: e.size.totalBytes))
               .toList());
@@ -47,7 +47,7 @@ class StreamProvider {
       } else if (e is VideoUnplayableException) {
         return StreamProvider(
           playable: false,
-          statusMSG: e.reason ?? "Song is unplayable",
+          statusMSG: "Song is unplayable",
         );
       } else if (e is VideoRequiresPurchaseException) {
         return StreamProvider(
