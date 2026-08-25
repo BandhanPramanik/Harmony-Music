@@ -18,9 +18,10 @@ class StreamProvider {
       final res = await yt.videos.streamsClient.getManifest(
         videoId,
         ytClients: [
-          YoutubeApiClient.tv,
+          YoutubeApiClient.visionos,
           YoutubeApiClient.ios,
-          YoutubeApiClient.androidVr,
+          YoutubeApiClient.androidMusic,
+          YoutubeApiClient.safari,
         ],
       );
       final audio = res.audioOnly;
@@ -34,7 +35,7 @@ class StreamProvider {
                       e.audioCodec.contains('mp') ? Codec.mp4a : Codec.opus,
                   bitrate: e.bitrate.bitsPerSecond,
                   duration: e.duration ?? 0,
-                  loudnessDb: e.loudnessDb ?? 0.0,
+                  loudnessDb: e.loudnessDb,
                   url: e.url.toString(),
                   size: e.size.totalBytes))
               .toList());

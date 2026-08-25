@@ -70,9 +70,9 @@ class StreamClient {
     // visionOS was the previous default but broke with YouTube API changes in 2026.
     final clients = ytClients ??
         [
-          YoutubeApiClient.tv,
+          YoutubeApiClient.visionos,
           YoutubeApiClient.ios,
-          YoutubeApiClient.androidVr,
+          YoutubeApiClient.androidMusic,
         ];
 
     if (_jsChallengeSolver != null && ytClients == null) {
