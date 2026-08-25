@@ -231,7 +231,6 @@ class _StreamInfo extends StreamInfoProvider {
   late final double loudnessDb =
       (root.getT<num>('loudnessDb'))?.toDouble() ?? 0.0;
 
-  @override
   late final bool isAudioOnly = codec.type == 'audio';
 
   @override
