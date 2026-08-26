@@ -72,11 +72,29 @@ jobs:
         continue-on-error: true
         run: flutter_distributor package --platform linux --targets appimage
 
-      - name: Upload release artifacts
+      - name: Upload release artifacts (All)
         uses: actions/upload-artifact@v4
         with:
-          name: harmony-music-linux-artifacts
+          name: harmony-music-all-linux-artifacts
           path: |
             dist/**/*.deb
             dist/**/*.rpm
+            dist/**/*.AppImage
+      - name: Upload release artifact (Debian-based systems)
+        uses: actions/upload-artifact@v4
+        with:
+          name: harmony-music-deb-artifact
+          path: |
+            dist/**/*.deb
+      - name: Upload release artifact (Fedora-based systems)
+        uses: actions/upload-artifact@v4
+        with:
+          name: harmony-music-rpm-artifact
+          path: |
+            dist/**/*.rpm
+      - name: Upload release artifact (AppImage)
+        uses: actions/upload-artifact@v4
+        with:
+          name: harmony-music-appimage-artifact
+          path: |
             dist/**/*.AppImage
