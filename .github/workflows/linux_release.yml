@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -73,7 +73,7 @@ jobs:
         run: flutter_distributor package --platform linux --targets appimage
 
       - name: Upload release artifacts (All)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: harmony-music-all-linux-artifacts
           path: |
@@ -81,19 +81,19 @@ jobs:
             dist/**/*.rpm
             dist/**/*.AppImage
       - name: Upload release artifact (Debian-based systems)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: harmony-music-deb-artifact
           path: |
             dist/**/*.deb
       - name: Upload release artifact (Fedora-based systems)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: harmony-music-rpm-artifact
           path: |
             dist/**/*.rpm
       - name: Upload release artifact (AppImage)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: harmony-music-appimage-artifact
           path: |
