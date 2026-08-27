@@ -109,7 +109,7 @@ class ThemeController extends GetxController {
               backgroundColor: primarySwatch[700],
               primarySwatch: primarySwatch),
           // accentColor: primarySwatch[200],
-          dialogTheme: const DialogTheme(
+          dialogTheme: DialogTheme(
               backgroundColor: primarySwatch[700],
           ),
           cardColor: primarySwatch[600],
