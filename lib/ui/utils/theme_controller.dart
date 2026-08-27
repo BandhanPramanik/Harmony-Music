@@ -108,8 +108,10 @@ class ThemeController extends GetxController {
               brightness: Brightness.dark,
               backgroundColor: primarySwatch[700],
               primarySwatch: primarySwatch),
-          //accentColor: primarySwatch[200],
-          dialogBackgroundColor: primarySwatch[700],
+          // accentColor: primarySwatch[200],
+          dialogTheme: const DialogTheme(
+              backgroundColor: primarySwatch[700],
+          ),
           cardColor: primarySwatch[600],
           primaryColorLight: primarySwatch[400],
           primaryColorDark: primarySwatch[700],
@@ -331,7 +333,7 @@ class ThemeController extends GetxController {
         1,
       );
     }
-    return MaterialColor(color.value, swatch);
+    return MaterialColor(color.toARGB32(), swatch);
   }
 
   Future<void> setWindowsTitleBarColor(Color color) async {
@@ -356,7 +358,8 @@ extension ComplementaryColor on Color {
     int r = 255 - (color.r * 255).toInt();
     int g = 255 - (color.g * 255).toInt();
     int b = 255 - (color.b * 255).toInt();
-    return Color.fromARGB(color.alpha, r, g, b);
+    int a = 255 - (color.a * 255).toInt();
+    return Color.fromARGB(a, r, g, b);
   }
 }
 
