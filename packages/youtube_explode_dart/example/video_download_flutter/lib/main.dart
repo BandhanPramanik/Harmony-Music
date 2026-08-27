@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 final audio = manifest.audioOnly.last;
 
                 // Build the directory.
-                final dir? = await getDownloadsDirectory();
+                final Directory? dir = await getDownloadsDirectory();
                 if (dir == null) {
                   throw Exception('Unable to access downloads directory');
                 }
