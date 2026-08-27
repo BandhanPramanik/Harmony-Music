@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:downloads_path_provider/downloads_path_provider.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 import 'package:permission_handler/permission_handler.dart';
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 final audio = manifest.audioOnly.last;
 
                 // Build the directory.
-                final dir = await DownloadsPathProvider.downloadsDirectory;
+                final dir = await getDownloadsDirectory();
                 final filePath = path.join(
                   dir.uri.toFilePath(),
                   '${video.id}.${audio.container.name}',
