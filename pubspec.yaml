@@ -58,7 +58,7 @@ dependencies:
       ref: 6672eb82657d9e671abbf42122031c88aa9e6d80
   palette_generator: ^0.3.3+4
   path: ^1.8.3
-  path_provider: ^2.1.1
+  path_provider: ^2.1.5
   permission_handler: ^11.0.1
   share_plus: ^10.1.4
   package_info_plus: ^8.0.0
