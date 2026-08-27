@@ -82,7 +82,7 @@ class ThemeController extends GetxController {
         textColor: textColor.value,
         titleColorSwatch: _createMaterialColor(textColor.value));
     currentSongId = songId;
-    Hive.box('appPrefs').put("themePrimaryColor", (primaryColor.value!).value);
+    Hive.box('appPrefs').put("themePrimaryColor", (primaryColor.value!).toARGB32());
     setWindowsTitleBarColor(themedata.value!.scaffoldBackgroundColor);
   }
 
@@ -317,7 +317,7 @@ class ThemeController extends GetxController {
   MaterialColor _createMaterialColor(Color color) {
     List strengths = <double>[.05];
     Map<int, Color> swatch = {};
-    final int r = color.red, g = color.green, b = color.blue;
+    final int r = (color.r * 255).toInt(), g = (color.g * 255).toInt(), b = (color.g * 255).toInt();
 
     for (int i = 1; i < 10; i++) {
       strengths.add(0.1 * i);
@@ -340,9 +340,9 @@ class ThemeController extends GetxController {
       Future.delayed(
           const Duration(milliseconds: 350),
           () async => await platform.invokeMethod('setTitleBarColor', {
-                'r': color.red,
-                'g': color.green,
-                'b': color.blue,
+                'r': (color.r * 255).toInt(),
+                'g': (color.g * 255).toInt(),
+                'b': (color.b * 255).toInt(),
               }));
     } on PlatformException catch (e) {
       printERROR("Failed to set title bar color: ${e.message}");
@@ -353,9 +353,9 @@ class ThemeController extends GetxController {
 extension ComplementaryColor on Color {
   Color get complementaryColor => getComplementaryColor(this);
   Color getComplementaryColor(Color color) {
-    int r = 255 - color.red;
-    int g = 255 - color.green;
-    int b = 255 - color.blue;
+    int r = 255 - (color.r * 255).toInt();
+    int g = 255 - (color.g * 255).toInt();
+    int b = 255 - (color.b * 255).toInt();
     return Color.fromARGB(color.alpha, r, g, b);
   }
 }
@@ -386,11 +386,15 @@ extension HexColor on Color {
   }
 
   /// Prefixes a hash sign if [leadingHashSign] is set to `true` (default is `true`).
-  String toHex({bool leadingHashSign = true}) => '${leadingHashSign ? '#' : ''}'
-      '${alpha.toRadixString(16).padLeft(2, '0')}'
-      '${red.toRadixString(16).padLeft(2, '0')}'
-      '${green.toRadixString(16).padLeft(2, '0')}'
-      '${blue.toRadixString(16).padLeft(2, '0')}';
+  String toHex({bool leadingHashSign = true})
+  {
+    final alpha = (a * 255).toInt().toRadixString(16).padLeft(2, '0');
+    final red = (r * 255).toInt().toRadixString(16).padLeft(2, '0');
+    final green = (g * 255).toInt().toRadixString(16).padLeft(2, '0');
+    final blue = (b * 255).toInt().toRadixString(16).padLeft(2, '0');
+    return '${leadingHashSign ? '#' : ''}'
+            '$alpha$red$green$blue';
+  }
 }
 
 enum ThemeType {
