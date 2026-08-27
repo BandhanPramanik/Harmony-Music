@@ -80,7 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 final audio = manifest.audioOnly.last;
 
                 // Build the directory.
-                final dir = await getDownloadsDirectory();
+                final dir? = await getDownloadsDirectory();
+                if (dir == null) {
+                  throw Exception('Unable to access downloads directory');
+                }
                 final filePath = path.join(
                   dir.uri.toFilePath(),
                   '${video.id}.${audio.container.name}',
