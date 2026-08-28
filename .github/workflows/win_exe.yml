@@ -1,6 +1,10 @@
 name: Build Windows exe 
-on: workflow_dispatch
-  
+on:
+  workflow_run:
+    workflows: ["Code quality check"]
+    types:
+      - completed
+      
 jobs:
 
   build-windows-exe:
