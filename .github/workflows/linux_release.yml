@@ -1,11 +1,11 @@
 name: Linux Release Build
 
 on:
-  workflow_dispatch:
-  pull_request:
-    branches:
-      - main
-
+  workflow_run:
+    workflows: ["Code quality check"]
+    types:
+      - completed
+      
 jobs:
   build-linux-release:
     name: Build Linux deb, rpm and optional AppImage
