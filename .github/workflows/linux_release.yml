@@ -10,7 +10,9 @@ jobs:
   build-linux-release:
     name: Build Linux deb, rpm and optional AppImage
     runs-on: ubuntu-latest
-
+    container:
+      image: debian:stable
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
