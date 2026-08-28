@@ -2,7 +2,7 @@ name: Linux Release Build
 
 on:
   workflow_dispatch:
-  push:
+  pull_request:
     branches:
       - main
 
