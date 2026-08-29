@@ -1,9 +1,10 @@
+// ignore_for_file: avoid_print
 import 'dart:io';
 import 'package:youtube_explode_dart/youtube_explode_dart.dart';
 
 void main() async {
   final yt = YoutubeExplode();
-  final videoId = 'dQw4w9WgXcQ'; // Rick roll
+  const videoId = 'dQw4w9WgXcQ'; // Rick roll
   
   print('Fetching manifest for $videoId');
   
